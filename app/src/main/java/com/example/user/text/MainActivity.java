@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            textView_1.setText(msg.getData().get("text").toString());
+            setweather(msg.getData().get("text").toString());
         }
     };
 
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
-                                textView_1.setText(jsonObject.toString());
+                                setweather(jsonObject.toString());
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -182,5 +183,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
         );
+    }
+    private void setweather(String s){
+        WeatherBean weatherBean=JSON.parseObject(s,WeatherBean.class);
+        textView_1.setText(weatherBean.getWeatherinfo().toString());
     }
 }
