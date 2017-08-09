@@ -27,6 +27,9 @@ import com.squareup.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_5;
     private ImageView imageView_1;
     private TextView textView_1;
+    private String url="http://v.juhe.cn/weather/index?cityname=北京&dtype=&format=2&key=a3b12671d03faa0f2d047e0980b39dbe ";
 
     private Handler handler = new Handler() {
         @Override
@@ -118,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void request(int num) {
         String url_1 = "https://www.baidu.com";
-        String url_2 = "http://www.weather.com.cn/data/sk/101010100.html";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         switch (num) {
             case 1:
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 requestQueue.add(stringRequest);
                 break;
             case 2:
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url_2, null,
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
@@ -155,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void okrequest(int num) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder().url("http://www.weather.com.cn/data/sk/101010100.html").build();
+        Request request = new Request.Builder().url(url).build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(
                 new Callback() {
@@ -185,7 +188,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         );
     }
     private void setweather(String s){
-        WeatherBean weatherBean=JSON.parseObject(s,WeatherBean.class);
-        textView_1.setText(weatherBean.getWeatherinfo().toString());
+        String str="\n";
+        WeatherBean2 weatherBean=JSON.parseObject(s,WeatherBean2.class);
+        List<WeatherBean2.ResultBean.FutureBean> futureBeen=weatherBean.getResult().getFuture();
+//        textView_1.setText(weatherBean.getResult().getFuture().getDay_20170809().toString()+
+//                weatherBean.getResult().getFuture().getDay_20170810().toString());
+       for (int i=0;i<7;i++){
+            str+=futureBeen.get(i).toString();
+        }
+        textView_1.setText(str);
     }
 }

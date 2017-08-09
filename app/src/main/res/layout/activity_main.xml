@@ -12,42 +12,53 @@
             android:id="@+id/button_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="网络图片"/>
+            android:text="网络图片" />
+
         <Button
             android:id="@+id/button_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="应用资源"/>
+            android:text="应用资源" />
+
         <Button
             android:id="@+id/button_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="字符请求"/>
+            android:text="字符请求" />
+
         <Button
             android:id="@+id/button_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="JSON请求"/>
+            android:text="JSON请求" />
+
         <Button
             android:id="@+id/button_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="okhttp请求"/>
+            android:text="okhttp请求" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/iv_1"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/tv_1"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </ScrollView>
     </LinearLayout>
 
 
