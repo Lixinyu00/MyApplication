@@ -22,8 +22,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public RecyclerAdapter(Context context, List<String> datas){
         this.context=context;
         this.datas=datas;
-        Log.e("456", "RecyclerAdapter: "+this.datas );
-        Log.e("456", "RecyclerAdapter: "+getItemCount() );
     }
 
     @Override
@@ -36,7 +34,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.tv_item.setText(datas.get(position));
-        Log.e("789", "onBindViewHolder: "+position );
     }
 
     @Override
