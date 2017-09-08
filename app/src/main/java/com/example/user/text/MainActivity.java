@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
+                                Log.e("456789", "onResponse: "+jsonObject.toString() );
                                 setweather(jsonObject.toString());
                             }
                         }, new Response.ErrorListener() {
