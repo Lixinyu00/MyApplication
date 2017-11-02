@@ -41,11 +41,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return datas.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         TextView tv_item;
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_item=(TextView)itemView.findViewById(R.id.tv_item);
+            tv_item.setFocusable(true);
+            tv_item.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
         }
     }
 }
